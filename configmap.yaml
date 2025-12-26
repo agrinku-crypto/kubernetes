@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-html-config
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head><title>K8s Pro Success</title></head>
+    <body>
+      <h1>Managed by ConfigMap</h1>
+      <p>This file is injected automatically!</p>
+    </body>
+    </html>

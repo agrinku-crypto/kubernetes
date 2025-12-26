@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: my-web-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1 
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        # 1. Mount the ConfigMap file (The "Pro" Website Content)
+        - name: html-volume
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+        # 2. Mount the PVC (The "Disk" for extra logs/data)
+        - name: storage-volume
+          mountPath: /usr/share/nginx/html/data
+      volumes:
+      - name: html-volume
+        configMap:
+          name: nginx-html-config
+          defaultMode: 0755
+      - name: storage-volume
+        persistentVolumeClaim:
+          claimName: nginx-pvc 
+
+
