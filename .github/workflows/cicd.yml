@@ -1,11 +1,12 @@
 name: Local-K8s-CD
+
 on: 
   push:
     branches: [ main ]
 
 jobs:
   deploy:
-    runs-on: self-hosted # This tells GitHub to use YOUR Mac
+    runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -13,7 +14,7 @@ jobs:
       - name: Deploy to Local Cluster
         run: |
           /opt/homebrew/bin/kubectl apply -f configmap.yaml
-	  /opt/homebrew/bin/kubectl apply -f service.yaml
+          /opt/homebrew/bin/kubectl apply -f service.yaml
           /opt/homebrew/bin/kubectl apply -f deploy.yaml
       
       - name: Verify Deployment
