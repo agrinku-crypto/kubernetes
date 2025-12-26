@@ -16,8 +16,8 @@ jobs:
           /opt/homebrew/bin/kubectl apply -f configmap.yaml
           /opt/homebrew/bin/kubectl apply -f service.yaml
           /opt/homebrew/bin/kubectl apply -f deploy.yaml
-	  /opt/homebrew/bin/kubectl apply -f ingress.yaml
-      
+          /opt/homebrew/bin/kubectl apply -f deploy.yaml
+		  
       - name: Verify Deployment
         run: |
           /opt/homebrew/bin/kubectl rollout status deployment/my-web-server
