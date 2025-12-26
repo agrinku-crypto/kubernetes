@@ -12,10 +12,10 @@ jobs:
 
       - name: Deploy to Local Cluster
         run: |
-        /opt/homebrew/bin/kubectl apply -f configmap.yaml
-        /opt/homebrew/bin/kubectl apply -f deploy.yaml
+          /opt/homebrew/bin/kubectl apply -f configmap.yaml
+          /opt/homebrew/bin/kubectl apply -f deploy.yaml
       
       - name: Verify Deployment
         run: |
-	/opt/homebrew/bin/kubectl rollout status deployment/my-web-server
+	  /opt/homebrew/bin/kubectl rollout status deployment/my-web-server
 
