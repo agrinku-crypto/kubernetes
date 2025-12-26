@@ -12,8 +12,8 @@ jobs:
 
       - name: Deploy to Local Cluster
         run: |
-        kubectl apply -f configmap.yaml
-        kubectl apply -f deploy.yaml
+        /opt/homebrew/bin/kubectl apply -f configmap.yaml
+        /opt/homebrew/bin/kubectl apply -f deploy.yaml
       
       - name: Verify Deployment
         run: kubectl rollout status deployment/my-web-server
