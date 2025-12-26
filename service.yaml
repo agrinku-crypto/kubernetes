@@ -1,12 +1,14 @@
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-web-service
+  name: ingress-nginx-controller
 spec:
-  selector:
-    app: nginx  # This MUST match the label in your Deployment
+  type: LoadBalancer  # Docker Desktop handles the bridge to localhost for you
   ports:
-    - protocol: TCP
-      port: 80         # The port the service listens on
-      targetPort: 80   # The port the Nginx container listens on
-  type: ClusterIP
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: ingress-nginx # Ensure this matches your controller labels
